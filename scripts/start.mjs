@@ -1,0 +1,13 @@
+import {readFile} from 'node:fs/promises';
+import {dirname,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {spawn} from 'node:child_process';
+if(process.platform!=='linux')throw new Error('The execution host requires Linux with Docker; use WSL2 or a Linux server.');
+const root=dirname(dirname(fileURLToPath(import.meta.url)));
+const config=JSON.parse(await readFile(join(root,'config.local.json'),'utf8'));
+const env={...process.env,PATH:join(config.nodeDir,'bin')+':'+process.env.PATH,DSH_HOME:join(root,'host-home')};
+delete env.DEEPSEEK_API_KEY;
+const child=spawn(join(config.nodeDir,'bin/node'),['--import',join(config.dshDir,'node_modules/tsx/dist/esm/index.mjs'),join(config.dshDir,'apps/cli/src/bin.ts'),'--profile','web','--patch',join(root,'studio.overlay.json'),'--host','127.0.0.1','--port',String(config.hostPort),'--no-open'],{cwd:config.dshDir,env,stdio:'inherit'});
+for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>child.kill(signal));
+child.on('error',error=>{console.error(error.message);process.exitCode=1;});
+child.on('close',(code,signal)=>{process.exitCode=code??(signal?1:0);});

@@ -1,0 +1,17 @@
+{
+  "name": "dsh-studio",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Drawable DSH workspaces and a four-harness comparison using DeepSeek.",
+  "license": "MIT",
+  "engines": {"node": ">=24"},
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "configure": "node scripts/configure.mjs",
+    "start": "node scripts/start.mjs",
+    "install:harnesses": "node scripts/install-harnesses.mjs",
+    "check": "node scripts/check-release.mjs"
+  },
+  "files": ["src", "scripts", "examples", "deploy", "docs", "README.md", "README.zh-CN.md", "LICENSE"]
+}

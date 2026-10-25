@@ -1,0 +1,17 @@
+[Unit]
+Description=DSH Studio plugin
+After=network-online.target docker.service
+
+[Service]
+Type=simple
+# Replace BOTH paths with the checkout and Node paths on your machine.
+WorkingDirectory=/opt/dsh-studio
+ExecStart=/usr/bin/node scripts/start.mjs
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+KillMode=control-group
+
+[Install]
+WantedBy=default.target

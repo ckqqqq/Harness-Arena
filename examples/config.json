@@ -1,0 +1,7 @@
+{
+  "dshDir": "/opt/deepseek-harness",
+  "nodeDir": "/opt/node-runtime",
+  "image": "REPLACE_WITH_DOCKER_IMAGE_SHA256",
+  "host": "127.0.0.1",
+  "gatewayHost": "172.17.0.1"
+}
