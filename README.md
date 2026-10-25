@@ -1,6 +1,6 @@
 # DSH Studio
 
-[简体中文](README.zh-CN.md) · [Installation](docs/installation.md) · [Architecture](docs/architecture.md)
+[简体中文](README.zh-CN.md) · [Documentation](docs/README.md) · [Installation](docs/installation.md) · [Architecture](docs/architecture.md)
 
 A DSH plugin for drawable workspaces and side-by-side harness conversations using the same DeepSeek model.
 
@@ -11,6 +11,8 @@ A DSH plugin for drawable workspaces and side-by-side harness conversations usin
 
 This is an experimental Linux/Docker project. Windows users can run the execution host in WSL2 or on a Linux server and open the UI in a browser. It is an interactive comparison, not a controlled performance benchmark: tool sets, prompts, reasoning policies and protocol behavior differ across harnesses.
 
+![Four real harnesses generating 3D artifacts](docs/images/3d-showcase.png)
+
 ## Quick start
 
 Prerequisites: Node 24 in a dedicated runtime directory, Git, Docker, uv and a prepared [DSH checkout](https://github.com/deepseek-ai/deepseek-harness) with its dependencies installed. Do not use a whole system directory such as `/usr` as a runtime mount. See [installation](docs/installation.md) for the tested DSH revision and configuration fields.
@@ -19,8 +21,8 @@ Prerequisites: Node 24 in a dedicated runtime directory, Git, Docker, uv and a p
 git clone https://github.com/ckqqqq/dsh-studio.git
 cd dsh-studio
 npm run install:harnesses
-docker build -t dsh-studio-runtime:0.2 deploy
-docker image inspect --format '{{.Id}}' dsh-studio-runtime:0.2
+docker build -t dsh-studio-runtime:0.4 deploy
+docker image inspect --format '{{.Id}}' dsh-studio-runtime:0.4
 cp examples/config.json settings.json
 ```
 
@@ -71,3 +73,21 @@ The UI access code controls API access. Native histories and files stay in `data
 ## License
 
 MIT for Studio code. Downstream harnesses and runtime dependencies retain their own licenses and terms; see [third-party notices](THIRD_PARTY_NOTICES.md).
+
+### Artifact previews and request budgets
+
+Version 0.3 adds interactive self-contained HTML, MP4/WebM playback and image previews in each lane, with expansion and download controls. The runtime image includes ffmpeg, Pillow, numpy and Noto CJK fonts. Defaults are 64 admitted inference requests and 900 seconds per lane/turn. Budget exhaustion preserves partial output, files and sessions; rejected retries and token estimates do not count.
+
+Previews are immutable snapshots created after the lane stops, limited to 100 MiB per file and 32 active links, expiring after 600 seconds. HTML runs in an opaque-origin sandbox with network access blocked; use inline CSS/JS and data resources. Refresh an expired preview to create a new link.
+
+### Generic 3D artifacts
+
+Version 0.4 adds a locally bundled Three.js viewer for uncompressed GLB and self-contained glTF 2.0. Orbit, pan, zoom, wireframe, bounds, part highlighting and auto-fit work independently of case names. The image includes Blender. External model URIs and unsupported required decoder extensions are rejected before loading; geometry, texture pixels, graphs and animation allocations are bounded.
+
+Six declarative cases in `examples/3d-cases.json` cover mechanical voids, furniture scale, hollow curves, articulated assemblies, multi-part vehicles and room scenes. Run `node scripts/run-3d-cases.mjs --config config.local.json` to broadcast cases to four native CLIs and independently inspect the exported models in networkless containers. Native completion, format admission and listed geometric constraints are separate results. Reports remain in private `data/case-runs/`.
+
+The checked-in viewer bundle is built with `npm ci && npm run build:viewer`. Optional Blender negative controls are in `test/fixtures/model-negative.py`; they are synthetic validator tests, not harness performance results.
+
+### Cordis case plugins
+
+Studio provides `studioModelCases` for owned, disposable registrations from sibling Cordis plugins. See [plugin development](docs/plugins.md) and the [runnable example](examples/plugins/model-case/README.md). Case registration alone does not call a model or install code.

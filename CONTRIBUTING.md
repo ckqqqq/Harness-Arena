@@ -5,3 +5,5 @@ Use Node 24. Run `npm test` and `npm run check` before proposing changes. Unit t
 Keep deployment settings in generated configuration. Do not commit private prompts, access codes, native-session fixtures or machine-specific paths. Keep Studio changes behind its plugin seam instead of modifying the DSH core loop.
 
 For a runtime integration change, record the operating system/architecture, DSH revision, CLI versions, image identity, commands actually run and limitations. Preserve raw evidence privately; publish only deliberately sanitized diagnostics.
+
+Start with the [development guide](docs/development.md), [plugin reference](docs/plugins.md) and [HTTP API](docs/api.md). Rebuild the viewer after changing shared admission code. Run Python numerical tests when changing geometric comparisons. `npm run check` checks candidate files and local documentation link paths; it does not certify remote links or Markdown anchors.

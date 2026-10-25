@@ -1,8 +1,10 @@
 # DSH Studio
 
-[English](README.md) · [安装说明](docs/installation.md) · [架构](docs/architecture.md)
+[English](README.md) · [文档导航](docs/README.zh-CN.md) · [安装说明](docs/installation.md) · [架构](docs/architecture.md)
 
 独立的 DSH 插件：通过画图组合工作台，在同一页面比较 Claude Code、Codex、Hermes 和 DSH 的真实回复，统一使用 DeepSeek 模型。
+
+![Four real harnesses generating 3D artifacts](docs/images/3d-showcase.png)
 
 ## 功能
 
@@ -10,6 +12,10 @@
 - **草图识别**：草图加一句说明交给 DeepSeek Flash，先预览草案，再采用、修改和保存。
 - **可操作组件**：聊天、文件列表、文本预览/编辑和便笺。文件可附加到共享问题。
 - **四栏真实运行**：四个原生 CLI、四份文件副本、四个独立会话；支持连续对话、停止及同一浏览器会话内的刷新恢复。
+- **作品预览**：每栏自动发现GLB／自包含 glTF、HTML、MP4/WebM 和图片，支持交互、视频播放、放大和下载。
+- **通用 3D 查看器**：旋转、缩放、平移、自动居中、线框、包围盒、部件高亮与尺寸统计，不依赖具体模型名称。
+- **多案例验收**：机械支架、家具、曲面花瓶、关节台灯、探测车、室内场景；模型生成与独立几何检查分离。
+- **视频工具链**：运行镜像预装 ffmpeg、Pillow、numpy 和 Noto CJK 字体，避免任务重复安装依赖。
 - **主架构隔离**：通过 DSH overlay 加载，使用独立 profile home；不修改 DSH 核心循环。
 
 当前是 Linux + Docker 实验项目。Windows 可以使用 WSL2 或 Linux 服务器作为执行主机。四栏的模型相同，但工具、系统指令、思考策略和协议不同，因此页面用于交互观察，不能直接当作严格公平的能力榜单。
@@ -22,8 +28,8 @@
 git clone https://github.com/ckqqqq/dsh-studio.git
 cd dsh-studio
 npm run install:harnesses
-docker build -t dsh-studio-runtime:0.2 deploy
-docker image inspect --format '{{.Id}}' dsh-studio-runtime:0.2
+docker build -t dsh-studio-runtime:0.4 deploy
+docker image inspect --format '{{.Id}}' dsh-studio-runtime:0.4
 cp examples/config.json settings.json
 ```
 
@@ -51,6 +57,14 @@ npm start
 
 识别结果只使用四种预置组件，不执行模型生成的 HTML 或脚本。草图笔迹和便笺保存在浏览器中；布局导出包含笔迹。
 
+每栏每轮默认最多 64 次模型请求、15 分钟。额度耗尽显示明确原因，保留部分输出、文件和会话，可继续对话。请求上限只统计放行的推理请求，不包含 token 估算或拒绝后的重试。
+
+已保存的会话可通过 `/?conversation=<会话 UUID>` 直接打开，仍需插件访问码。
+
+点击页头“演示模式”可隐藏输入区并扩展四栏，点击“退出演示”返回（主界面获得焦点时也支持 Esc）；各栏展示执行阶段与模型请求用量。
+
+作品预览使用生成结束后的只读快照，单文件最大 100 MiB，链接有效期 10 分钟；过期后刷新作品。HTML 在无同源权限的沙箱中执行，禁止网络请求，仅支持内嵌脚本、样式和数据资源。
+
 ## 测试与数据
 
 ```bash
@@ -63,3 +77,19 @@ npm run check
 `data/conversations/` 保存各栏会话、文件和原生事件；`data/proposals/` 保存成功的草图识别输入和输出。不要提交这些目录。容器只持有当前任务有效的转发凭据，真实 DeepSeek Key 留在服务端。
 
 MIT 许可证仅适用于本项目代码，下游 harness 遵循各自许可证和服务条款。生产部署边界见 [SECURITY.md](SECURITY.md)。
+
+## 3D 建模
+
+在案例下拉框中选任务，点击“填入建模任务”后发送。案例只填入输入，不自动消耗模型额度。运行镜像预装 Blender 4.0。已有模型只要放入任意工作区的 GLB/glTF 文件，也会被同一个查看器发现；不用修改 UI。
+
+查看器目前接收未压缩 GLB 和自包含 glTF 2.0，拒绝外部 URI、SVG 纹理、Draco 等需要额外解码器的必需扩展。支持内嵌 PNG/JPEG/WebP，设有像素、网格、层级和动画资源上限。尺寸显示采用 glTF 的米制 Y-up；独立 Blender 几何报告使用 Z-up。
+
+可复用的案例定义在 `examples/3d-cases.json`，无需修改查看器。`node scripts/run-3d-cases.mjs --config config.local.json` 会让四个真实 CLI 逐案生成模型，并在无网络的独立容器中重新导入、测量。检查条件保存在模型工作区之外，结果保存在私有 `data/case-runs/`，可从页面选择记录。程序校验不能代替造型、工艺或工程审查，详情见 [3D 验证记录](docs/3d-validation.md)。
+
+修改查看器源码后运行 `npm ci && npm run build:viewer`；构建产物随仓库提供，部署执行服务本身不需要安装前端依赖。
+
+已有结果可用 `--recheck data/case-runs/<run-id>/summary.json` 重新验收，从不可变预览快照读取模型，不再调用四个模型。
+
+## 扩展插件
+
+独立 Cordis 插件可通过 `studioModelCases` 注册 3D 案例，卸载时自动撤销；重复 ID 和不支持的检查条件会报错。见 [插件开发](docs/plugins.md) 与 [可运行示例](examples/plugins/model-case/README.md)。注册案例不会自动调用模型。

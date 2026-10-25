@@ -27,7 +27,8 @@ Copy `examples/config.json` to `settings.json` and edit its required fields. `np
 | `hostPort` | Dedicated DSH carrier on loopback, port `3082` |
 | `gatewayHost`, `gatewayPort` | Docker bridge address `172.17.0.1`, port `3083` |
 | `model` | `deepseek-flash` in all four lanes |
-| `timeoutSeconds`, `maxTurns` | `240` seconds and `16` admitted POST model requests per lane/turn |
+| `timeoutSeconds`, `maxTurns` | `900` seconds and `64` admitted POST model requests per lane/turn |
+| `artifactMaxBytes`, `artifactTokenSeconds` | `104857600` bytes and `600` seconds for immutable previews |
 | `sketchModel` | `deepseek-flash` |
 | `sketchTimeoutSeconds` | `90` seconds |
 | `sketchMaxImageBytes` | `2097152` bytes |
@@ -52,3 +53,9 @@ For LAN access, explicitly change `host` and regenerate configuration. Do not ex
 ## Upgrades and rollback
 
 Stop new sends, wait for active tasks to finish, stop Studio, back up the private data directory, update code/runtimes, run tests and regenerate configuration. Preserve the key file and native histories. The prototype does not migrate downstream CLI session formats. Retain a known-working code revision and dependency set when changing CLI versions.
+
+## Model viewer build and case runs
+
+The checked-in viewer bundle is ready to serve. Developers changing `src/viewer/` or the shared model admission policy should run `npm ci` and `npm run build:viewer`; the pinned lockfile and CI verify the generated bundle. Runtime execution remains independent of these frontend development dependencies.
+
+Rebuild the runtime Dockerfile when upgrading to 0.4 to include Blender, then regenerate local configuration with the new image digest. The generic case runner uses the same config file and Docker permissions as the plugin host. It stores private case reports and model snapshots under `data/case-runs/`. Never commit that directory.
