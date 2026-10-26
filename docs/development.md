@@ -45,3 +45,5 @@ The local development tree may be ahead of GitHub and the deployed host. Report 
 Release scope and deployment milestones are recorded in [the changelog](../CHANGELOG.md). An Unreleased entry is not a published version.
 
 To exercise the actual Cordis lifecycle without a key, Docker or inference, run `npm run check:cordis -- /absolute/path/to/built-dsh`. This is an optional integration test against the installed DSH runtime, separate from the keyless unit suite.
+
+Deployment path and credential checks live in `src/deployment.mjs`; scalar configuration validation is shared by generated configs and direct overlays in `src/configuration.mjs`. Changes must preserve canonical path isolation before provisioning and private-file checks before reading a key. The doctor reports metadata and fixed diagnostics, never credential values or raw child-process errors.

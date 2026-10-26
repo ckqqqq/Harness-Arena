@@ -4,6 +4,10 @@ Entries distinguish local/deployment milestones from public GitHub publication. 
 
 ## Unreleased
 
+- Add a read-only deployment doctor and shared configuration validation.
+- Resolve symlinked key paths before provisioning or startup and enforce private regular-file metadata.
+
+
 - Provide the Cordis `studioModelCases` service with owned, disposable case packs, atomic duplicate checks and bounded predicate validation.
 - Add a runnable consumer plugin and an optional native Cordis check covering service replacement and reinjection.
 - Organize user, development, plugin and HTTP references through English and Chinese documentation indexes.

@@ -11,6 +11,8 @@ import {admitModelRequest} from './budget.mjs';
 import {ArtifactPreviews,listArtifacts} from './artifacts.mjs';
 import {buildModelPrompt} from './model-cases.mjs';
 import {ModelCaseRegistry,parseModelCaseCatalog} from './model-case-registry.mjs';
+import {assertKeyIsolation,assertPrivateKeyFile,assertDataIsolation} from './deployment.mjs';
+import {validateConfiguration} from './configuration.mjs';
 export const name='dsh-studio';
 export const inject=['webServer'];
 export const provide=['studioModelCases'];
@@ -24,8 +26,8 @@ async function listen(server,port,host) {await new Promise((resolve,reject)=>{se
 async function close(server) {server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
 /** Mount this function through a DSH --patch overlay. Disposal stops all owned containers. */
 export async function apply(ctx,config) {
-  for(const k of ['pluginDir','dataDir','keyFile','dshDir','nodeDir','pythonDir','image','host','gatewayHost','model','sketchModel','dockerPath']) if(typeof config[k]!=='string'||!config[k]) throw new Error('dsh-studio: missing '+k);
-  for(const k of ['port','gatewayPort','timeoutSeconds','maxTurns','sketchTimeoutSeconds','sketchMaxImageBytes','sketchMaxOutputTokens','artifactMaxBytes','artifactTokenSeconds'])if(!Number.isInteger(config[k])||config[k]<1)throw new Error('dsh-studio: invalid '+k);
+  validateConfiguration(config);
+  await assertDataIsolation(config);await assertKeyIsolation(config);await assertPrivateKeyFile(config.keyFile);
   const key=(await readFile(config.keyFile,'utf8')).trim();if(!key)throw new Error('DeepSeek key file is empty');
   await mkdir(config.dataDir,{recursive:true,mode:0o700});
   const tokenFile=join(config.dataDir,'access.token');let access;

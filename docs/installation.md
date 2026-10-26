@@ -59,3 +59,13 @@ Stop new sends, wait for active tasks to finish, stop Studio, back up the privat
 The checked-in viewer bundle is ready to serve. Developers changing `src/viewer/` or the shared model admission policy should run `npm ci` and `npm run build:viewer`; the pinned lockfile and CI verify the generated bundle. Runtime execution remains independent of these frontend development dependencies.
 
 Rebuild the runtime Dockerfile when upgrading to 0.4 to include Blender, then regenerate local configuration with the new image digest. The generic case runner uses the same config file and Docker permissions as the plugin host. It stores private case reports and model snapshots under `data/case-runs/`. Never commit that directory.
+
+## Read-only deployment preflight
+
+After configuration, run `npm run doctor` or `npm run --silent doctor -- --json`. Use `--config /absolute/path/config.local.json` for another generated config. The input must be a resolved config, not the partial settings template. Exit status is 0 when reported checks pass, otherwise 1.
+
+The doctor checks the Linux/Node host, required CLI files, configured Node version, key-file metadata/read access, canonical key isolation and Docker daemon/image availability. It does not read credential contents, start containers, write configuration, bind ports or call a model. A successful report does not validate the API key, native session compatibility, network routing or every package inside the image.
+
+Configuration and plugin startup both reject keys whose resolved paths fall inside runtime mounts, the shared seed or conversation workspaces, including existing symlink parents and dangling directory aliases. Existing key files must be nonempty regular files; on Unix they must be owned by the current user and have no group/other permission bits. Windows ACL verification is outside this host's supported deployment contract. Use an owner-only dedicated key file, and never reuse a key through a runtime/workspace path.
+
+The data directory must also be separate from every read-only runtime mount in both directions. A runtime tree must not contain lane data, and lane data must not contain a runtime tree. Run the doctor under the same user/group environment as the execution service.

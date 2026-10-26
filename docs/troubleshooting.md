@@ -2,7 +2,7 @@
 
 ## The UI is unavailable
 
-Check the configured bind address and UI port first. The DSH carrier, Studio UI and model relay use distinct ports. A reachable original DSH UI does not prove Studio loaded. Check the dedicated service's startup error and confirm its overlay points to the intended source checkout. Do not start a second host over the same data directory.
+Run `npm run doctor` against the generated configuration, then check the configured bind address and UI port. A doctor failure is a deployment diagnostic, not a model response. The DSH carrier, Studio UI and model relay use distinct ports. A reachable original DSH UI does not prove Studio loaded. Check the dedicated service's startup error and confirm its overlay points to the intended source checkout. Do not start a second host over the same data directory.
 
 Docker must be accessible by the service user, not just an interactive login shell. Dedicated runtime paths and the configured image digest must exist. A user service created before Docker group membership may need its execution-group setup refreshed. Follow the installation guide rather than making the task containers privileged.
 

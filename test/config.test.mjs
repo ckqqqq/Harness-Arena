@@ -11,3 +11,7 @@ test('configuration derives private locations from the current checkout',()=>{
 test('configuration rejects unpinned images, relative mounts and colliding ports',()=>{
   for(const patch of [{image:'ubuntu:latest'},{nodeDir:'relative'},{gatewayPort:3081},{port:80},{model:'other-model'}])assert.throws(()=>resolveConfig({...input,...patch},root));
 });
+test('configuration rejects malformed limits, timer overflows and bind addresses',()=>{
+  for(const patch of [{timeoutSeconds:0},{timeoutSeconds:2147484},{maxTurns:1.5},{artifactMaxBytes:Number.MAX_SAFE_INTEGER+1},{host:''},{gatewayHost:'http://localhost'}])assert.throws(()=>resolveConfig({...input,...patch},root));
+  assert.throws(()=>resolveConfig([],root));
+});

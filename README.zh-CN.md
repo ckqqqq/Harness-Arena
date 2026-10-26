@@ -42,6 +42,7 @@ read -rsp 'DeepSeek API key: ' DEEPSEEK_API_KEY; echo
 export DEEPSEEK_API_KEY
 npm run configure -- settings.json
 unset DEEPSEEK_API_KEY
+npm run doctor
 npm start
 ```
 

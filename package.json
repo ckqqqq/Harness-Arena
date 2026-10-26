@@ -16,7 +16,8 @@
     "check": "node scripts/check-release.mjs && node scripts/check-docs.mjs",
     "build:viewer": "node scripts/build-viewer.mjs",
     "check:docs": "node scripts/check-docs.mjs",
-    "check:cordis": "node scripts/check-cordis-plugin.mjs"
+    "check:cordis": "node scripts/check-cordis-plugin.mjs",
+    "doctor": "node scripts/doctor.mjs"
   },
   "files": [
     "src",
