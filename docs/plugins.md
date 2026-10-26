@@ -43,7 +43,7 @@ Each case has `id`, `title`, `brief` and optional `checks`. The supported predic
 
 Unknown predicates, reversed intervals, nonfinite coordinates and zero-length rays are rejected. Registration does not prove geometric quality. Independent inspection evaluates the supported predicates; the viewer only loads admitted model data.
 
-The authenticated `GET /api/model-cases` reflects live registrations. Refresh the page's records to refresh available cases. The batch runner currently reads an explicit JSON manifest; to benchmark a plugin's cases, export its `list()` result as a version-1 case manifest. Native plugin registration by itself does not start a benchmark or call an LLM.
+The authenticated `GET /api/model-cases` reflects live registrations. Refresh the page's records to refresh available cases. The batch runner currently reads an explicit JSON manifest; to benchmark a plugin's cases, export its `list()` result as a version-1 case manifest. The runnable example shares its version-1 `cases.json` between registration and the batch runner; see its README for the command. Native plugin registration by itself does not start a benchmark or call an LLM.
 
 ## Runnable example
 

@@ -1,5 +1,6 @@
 # DSH Studio
 
+[案例长廊 / Case gallery](https://ckqqqq.github.io/Harness-Arena/) · [视频剪辑案例](docs/video-cases.md)
 [English](README.md) · [文档导航](docs/README.zh-CN.md) · [安装说明](docs/installation.md) · [架构](docs/architecture.md)
 
 独立的 DSH 插件：通过画图组合工作台，在同一页面比较 Claude Code、Codex、Hermes 和 DSH 的真实回复，统一使用 DeepSeek 模型。

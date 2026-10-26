@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "beat-cut",
+      "title": "节拍驱动广告剪辑",
+      "category": "Video",
+      "status": "ready",
+      "prompt": "将输入的三个镜头剪成 12 秒产品短片，1280×720、24fps、H.264/AAC。每秒一个节拍，镜头在第 0、4、8 秒切换；保留配乐，首尾淡入淡出各 0.25 秒。输出成片、逐镜头时间表和可复现脚本。",
+      "checks": {
+        "durationSeconds": 12,
+        "width": 1280,
+        "height": 720,
+        "fps": 24,
+        "videoCodec": "h264",
+        "audioRequired": true
+      }
+    },
+    {
+      "id": "vertical-reframe",
+      "title": "横屏转竖屏",
+      "category": "Video",
+      "status": "ready",
+      "prompt": "把输入的横屏素材转为 9:16 竖屏短片，720×1280、24fps、8 秒。主体保持可见，不能拉伸；使用模糊背景补边。添加安全区内标题，保留音轨，输出裁切策略和可复现脚本。",
+      "checks": {
+        "durationSeconds": 8,
+        "width": 720,
+        "height": 1280,
+        "fps": 24,
+        "videoCodec": "h264",
+        "audioRequired": true
+      }
+    },
+    {
+      "id": "subtitle-edit",
+      "title": "字幕与叙事节奏",
+      "category": "Video",
+      "status": "ready",
+      "prompt": "使用输入镜头制作 10 秒 1280×720、24fps 的解释短片。依次显示字幕：0–3 秒“一个问题”，3–7 秒“四种路径”，7–10 秒“看见差异”。字幕不得超出画面，输出 MP4、SRT 和可复现脚本。",
+      "checks": {
+        "durationSeconds": 10,
+        "width": 1280,
+        "height": 720,
+        "fps": 24,
+        "videoCodec": "h264",
+        "audioRequired": true
+      }
+    },
+    {
+      "id": "picture-in-picture",
+      "title": "画中画对比剪辑",
+      "category": "Video",
+      "status": "ready",
+      "prompt": "制作 8 秒 1280×720、24fps 的对比视频：主镜头全画幅，第二镜头在右下角画中画，宽度为画面三分之一，边距 24 像素。避免覆盖左上角标题，保留主音轨，输出 MP4、编辑时间表和可复现脚本。",
+      "checks": {
+        "durationSeconds": 8,
+        "width": 1280,
+        "height": 720,
+        "fps": 24,
+        "videoCodec": "h264",
+        "audioRequired": true
+      }
+    }
+  ]
+}

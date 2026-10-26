@@ -30,3 +30,13 @@ The launcher checks that each additional file is readable JSON containing an arr
 Refresh case records in Studio. The ring appears in the model-case picker. Selecting it only fills a task; submitting runs the selected harnesses. Remove the extra patch and restart to unload it. Programmatic Cordis consumers can dispose the plugin fiber directly.
 
 The [service reference](../../../docs/plugins.md) defines ownership, validation and duplicate behavior. This example demonstrates plugin integration; it is not an additional measured success case.
+
+## Reuse the same cases in a batch run
+
+The plugin reads [cases.json](cases.json), a version-1 catalog accepted directly by the batch runner. Keep task instructions and predicates in that file instead of maintaining a second copy:
+
+```sh
+node scripts/run-3d-cases.mjs --config config.local.json --cases examples/plugins/model-case/cases.json
+```
+
+This command starts real harness/model runs and requires a configured Linux/Docker host. It does not require loading the consumer plugin into the web host. Results remain private under the configured data directory; the example has no published performance result.

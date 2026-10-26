@@ -11,6 +11,7 @@ Studio is an independent DSH/Cordis plugin. It composes native harness execution
 | [Development](development.md) | Source map, build, tests and compatibility expectations |
 | [Plugin development](plugins.md) | DSH entrypoint and the Studio model-case service |
 | [HTTP API](api.md) | Auth, endpoint payloads, durable history and transient jobs |
+| [Video editing cases](video-cases.md) | Shared synthetic inputs, four editing tasks and metadata inspection |
 | [3D validation](3d-validation.md) | Six real cases, measurement scope and retained failures |
 | [Validation history](validation.md) | Automated and real integration evidence |
 

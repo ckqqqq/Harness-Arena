@@ -80,7 +80,7 @@ journalctl --user -u dsh-studio.service -n 80 --no-pager
 
 支持 `dimensions.x/y/z: [min, max]`、`minMeshes`、`minMaterials` 和 `rays`。尺寸采用米制、Blender Z-up 坐标；射线需要有限的三维 `origin`、`target` 和 `expect: "clear"` 或 `"blocked"`，起终点不能相同。未知条件、反向区间和非有限数值都会被拒绝。完整限制见 [接口参考](plugins.md#case-contract)。
 
-案例注册成功只说明插件接入成功，不代表模型通过几何验收。浏览器查看器的格式准入、原生 harness 的完成状态、独立几何检查结果分别记录。批量运行器目前读取显式的版本 1 JSON 案例文件；注册插件不会自动启动批量运行，也不会自行调用模型。
+案例注册成功只说明插件接入成功，不代表模型通过几何验收。浏览器查看器的格式准入、原生 harness 的完成状态、独立几何检查结果分别记录。批量运行器读取显式的版本 1 JSON 案例文件。示例插件直接读取同目录的 `cases.json`；运行 `node scripts/run-3d-cases.mjs --config config.local.json --cases examples/plugins/model-case/cases.json` 可复用同一份定义，无需先在网页宿主中加载插件。该命令会调用真实模型；注册插件本身不会启动批量运行。
 
 开发时可执行不调用模型的检查：
 

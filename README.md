@@ -1,5 +1,6 @@
 # DSH Studio
 
+[案例长廊 / Case gallery](https://ckqqqq.github.io/Harness-Arena/) · [视频剪辑案例](docs/video-cases.md)
 [简体中文](README.zh-CN.md) · [Documentation](docs/README.md) · [Installation](docs/installation.md) · [Architecture](docs/architecture.md)
 
 A DSH plugin for drawable workspaces and side-by-side harness conversations using the same DeepSeek model.

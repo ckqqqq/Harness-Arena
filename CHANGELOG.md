@@ -4,6 +4,10 @@ Entries distinguish local/deployment milestones from public GitHub publication. 
 
 ## Unreleased
 
+- Add a public static case gallery and GitHub Pages workflow, four video-editing tasks, reproducible synthetic input generation and metadata-only video inspection.
+
+- Share the example plugin case catalog with the batch runner to keep task instructions and geometry predicates in one file.
+
 - Document plugin authoring, ordered overlays, lifecycle checks and systemd overrides in a Chinese plugin guide.
 
 - Load sibling plugins with repeatable `npm start -- --patch PATH` options, preserving order and checking overlay files before host startup.
