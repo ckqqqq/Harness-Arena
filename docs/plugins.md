@@ -1,5 +1,7 @@
 # Plugin development
 
+[中文指南](plugins.zh-CN.md)
+
 ## DSH plugin boundary
 
 Studio's entrypoint exports `name`, `inject`, `provide` and `apply(ctx, config)`. It consumes DSH's `webServer` lifecycle and provides `studioModelCases`. Its own HTTP listener, relay, active containers and snapshots are owned by the Studio fiber and disposed with it. The original DSH agent loop and web application remain separate.

@@ -38,6 +38,8 @@ Inspect the default bridge with `docker network inspect bridge`. If its gateway 
 
 `npm start` launches DSH's supported `web` profile with the generated overlay and a separate `host-home/`. Studio owns its UI/relay listeners and task containers. It does not restart another DSH deployment.
 
+Load reviewed sibling plugins with `npm start -- --patch data/overlays/my-plugin.json`. Repeat `--patch` for multiple overlays; they load in order after the generated Studio overlay. See the [plugin example](../examples/plugins/model-case/README.md) and [Chinese plugin guide](plugins.zh-CN.md#systemd-用户服务) for a systemd override. Stop the existing host before launching a replacement.
+
 ## Remote access and systemd
 
 For loopback-only deployment, forward the UI port:

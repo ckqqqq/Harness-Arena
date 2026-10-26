@@ -9,7 +9,7 @@ Studio 是独立的 DSH/Cordis 插件。四栏调度、白板、作品预览与�
 | 失败、额度和预览排查 | [故障排查](troubleshooting.md) |
 | 模块与资源生命周期 | [架构](architecture.md) |
 | 构建、测试与贡献边界 | [开发指南](development.md) |
-| 注册独立扩展插件 | [插件开发](plugins.md) |
+| 注册独立扩展插件 | [中文插件指南](plugins.zh-CN.md) · [接口参考](plugins.md) |
 | HTTP 请求和持久化语义 | [API 参考](api.md) |
 | 六类 3D 案例的真实结果 | [3D 验证记录](3d-validation.md) |
 

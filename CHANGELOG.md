@@ -4,6 +4,8 @@ Entries distinguish local/deployment milestones from public GitHub publication. 
 
 ## Unreleased
 
+- Document plugin authoring, ordered overlays, lifecycle checks and systemd overrides in a Chinese plugin guide.
+
 - Load sibling plugins with repeatable `npm start -- --patch PATH` options, preserving order and checking overlay files before host startup.
 
 - Add a read-only deployment doctor and shared configuration validation.
