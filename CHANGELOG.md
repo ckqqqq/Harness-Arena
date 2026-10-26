@@ -4,6 +4,8 @@ Entries distinguish local/deployment milestones from public GitHub publication. 
 
 ## Unreleased
 
+- Load sibling plugins with repeatable `npm start -- --patch PATH` options, preserving order and checking overlay files before host startup.
+
 - Add a read-only deployment doctor and shared configuration validation.
 - Resolve symlinked key paths before provisioning or startup and enforce private regular-file metadata.
 

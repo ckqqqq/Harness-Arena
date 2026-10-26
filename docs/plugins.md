@@ -4,7 +4,7 @@
 
 Studio's entrypoint exports `name`, `inject`, `provide` and `apply(ctx, config)`. It consumes DSH's `webServer` lifecycle and provides `studioModelCases`. Its own HTTP listener, relay, active containers and snapshots are owned by the Studio fiber and disposed with it. The original DSH agent loop and web application remain separate.
 
-Configure Studio through the generated overlay. DSH's launcher supports repeatable `--patch` arguments, so a second local overlay can install sibling plugins. Use the same dedicated profile home and DSH source launcher as `scripts/start.mjs`; do not start two Studio providers on the same ports or data directory.
+Configure Studio through the generated overlay. DSH's launcher supports repeatable `--patch` arguments, so a second local overlay can install sibling plugins. Use `npm start -- --patch data/overlays/my-plugin.json` (repeat `--patch` for additional overlays in order). Paths resolve from the invoking directory; quote paths containing spaces. The launcher rejects unreadable files, invalid JSON and non-array overlays before spawning DSH; DSH validates the operations. Use the same dedicated profile home and DSH source launcher as `scripts/start.mjs`; do not start two Studio providers on the same ports or data directory.
 
 ## `studioModelCases` service
 

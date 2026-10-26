@@ -17,7 +17,15 @@ After configuring Studio, create an ignored local overlay under `data/overlays/r
 ]
 ```
 
-Use the existing DSH launcher command from `scripts/start.mjs`, with the extra `--patch /ABSOLUTE/PATH/dsh-studio/data/overlays/ring.json` after Studio's generated `--patch` argument. Keep the configured `DSH_HOME`, carrier port and runtime paths. Stop the existing host before starting its replacement; this overlay adds a consumer, not a second Studio provider.
+From the Studio repository, start with the extra overlay:
+
+```sh
+npm start -- --patch data/overlays/ring.json
+```
+
+Repeat `--patch PATH` to load more overlays in order after Studio's generated overlay. Quote paths containing spaces. Relative paths resolve from the directory where you invoke the launcher. `npm start -- --help` shows usage without requiring a configured Linux host.
+
+The launcher checks that each additional file is readable JSON containing an array before spawning DSH. DSH validates the patch operations and loads the plugins. Overlays can execute trusted host code; review them before loading. Stop the existing host before starting its replacement; this overlay adds a consumer, not a second Studio provider. The launcher preserves the configured `DSH_HOME`, carrier port and runtime paths.
 
 Refresh case records in Studio. The ring appears in the model-case picker. Selecting it only fills a task; submitting runs the selected harnesses. Remove the extra patch and restart to unload it. Programmatic Cordis consumers can dispose the plugin fiber directly.
 
