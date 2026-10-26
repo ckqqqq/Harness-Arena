@@ -90,7 +90,12 @@
         }
       ]
     },
-    "comparisonImage": "images/bracket.png"
+    "images": {
+      "claude": "images/bracket-claude.jpg",
+      "codex": "images/bracket-codex.jpg",
+      "hermes": "images/bracket-hermes.jpg",
+      "dsh": "images/bracket-dsh.jpg"
+    }
   },
   {
     "id": "desk",
@@ -116,7 +121,12 @@
       "minMeshes": 6,
       "minMaterials": 2
     },
-    "comparisonImage": "images/desk.png"
+    "images": {
+      "claude": "images/desk-claude.jpg",
+      "codex": "images/desk-codex.jpg",
+      "hermes": "images/desk-hermes.jpg",
+      "dsh": "images/desk-dsh.jpg"
+    }
   },
   {
     "id": "vase",
@@ -170,7 +180,12 @@
         }
       ]
     },
-    "comparisonImage": "images/vase.png"
+    "images": {
+      "claude": "images/vase-claude.jpg",
+      "codex": "images/vase-codex.jpg",
+      "hermes": "images/vase-hermes.jpg",
+      "dsh": "images/vase-dsh.jpg"
+    }
   },
   {
     "id": "lamp",
@@ -188,7 +203,12 @@
       "minMeshes": 7,
       "minMaterials": 2
     },
-    "comparisonImage": "images/lamp.png"
+    "images": {
+      "claude": "images/lamp-claude.jpg",
+      "codex": "images/lamp-codex.jpg",
+      "hermes": "images/lamp-hermes.jpg",
+      "dsh": "images/lamp-dsh.jpg"
+    }
   },
   {
     "id": "rover",
@@ -214,7 +234,12 @@
       "minMeshes": 8,
       "minMaterials": 3
     },
-    "comparisonImage": "images/rover.png"
+    "images": {
+      "claude": "images/rover-claude.jpg",
+      "codex": "images/rover-codex.jpg",
+      "hermes": "images/rover-hermes.jpg",
+      "dsh": "images/rover-dsh.jpg"
+    }
   },
   {
     "id": "room",
@@ -240,7 +265,12 @@
       "minMeshes": 10,
       "minMaterials": 4
     },
-    "comparisonImage": "images/room.png"
+    "images": {
+      "claude": "images/room-claude.jpg",
+      "codex": "images/room-codex.jpg",
+      "hermes": "images/room-hermes.jpg",
+      "dsh": "images/room-dsh.jpg"
+    }
   },
   {
     "id": "beat-cut",

@@ -17,7 +17,8 @@
     "build:viewer": "node scripts/build-viewer.mjs",
     "check:docs": "node scripts/check-docs.mjs",
     "check:cordis": "node scripts/check-cordis-plugin.mjs",
-    "doctor": "node scripts/doctor.mjs"
+    "doctor": "node scripts/doctor.mjs",
+    "build:gallery": "node scripts/build-gallery.mjs"
   },
   "files": [
     "src",

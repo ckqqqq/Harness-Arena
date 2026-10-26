@@ -26,6 +26,6 @@ Review actual cut timing, subtitle content, safe areas, framing, beat alignment 
 
 ## Public gallery
 
-The buildless gallery lives under `site/`. It uses only explicitly curated public data and images; it never scans private runtime directories. Ten case sections show task instructions and four harness lanes inline without opening dialogs. Six measured 3D cases reuse the original public-safe viewer captures; video lanes remain explicit placeholders. Existing 3D measurements link to their documented methodology. Video tasks remain marked pending until actual reviewed outputs and run evidence are added.
+The buildless gallery lives under `site/`. It uses only explicitly curated public data and images; it never scans private runtime directories. The static image wall shows only cases with four actual captures. It contains six measured 3D rows; the four pending video tasks remain in the catalog until real images exist. Run `npm run build:gallery` after updating the curated image map. The page needs no JavaScript or JSON fetch; thumbnails have fixed dimensions and normal lazy loading. Existing 3D measurements link to their documented methodology. Video tasks remain marked pending until actual reviewed outputs and run evidence are added.
 
 GitHub Pages deploys `site/` through the Pages workflow. In repository settings, select **Pages → Source → GitHub Actions**. The site is static: it does not require an API key, run harnesses or expose the live execution host.

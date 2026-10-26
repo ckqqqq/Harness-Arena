@@ -14,5 +14,7 @@ jobs:
       - run: npm run build:viewer
       - run: git diff --exit-code -- src/public/model-viewer.js
       - run: python3 -m unittest discover -s test -p "*_test.py"
+      - run: npm run build:gallery
+      - run: git diff --exit-code -- site/index.html
       - run: npm test
       - run: npm run check
