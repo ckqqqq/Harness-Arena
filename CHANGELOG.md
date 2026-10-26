@@ -4,6 +4,8 @@ Entries distinguish local/deployment milestones from public GitHub publication. 
 
 ## Unreleased
 
+- Present ten case sections as an inline four-harness comparison wall, including 24 actual 3D captures and explicitly pending video lanes.
+
 - Add a public static case gallery and GitHub Pages workflow, four video-editing tasks, reproducible synthetic input generation and metadata-only video inspection.
 
 - Share the example plugin case catalog with the batch runner to keep task instructions and geometry predicates in one file.

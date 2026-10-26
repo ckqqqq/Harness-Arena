@@ -89,7 +89,8 @@
           "expect": "blocked"
         }
       ]
-    }
+    },
+    "comparisonImage": "images/bracket.png"
   },
   {
     "id": "desk",
@@ -114,7 +115,8 @@
       },
       "minMeshes": 6,
       "minMaterials": 2
-    }
+    },
+    "comparisonImage": "images/desk.png"
   },
   {
     "id": "vase",
@@ -167,7 +169,8 @@
           "expect": "blocked"
         }
       ]
-    }
+    },
+    "comparisonImage": "images/vase.png"
   },
   {
     "id": "lamp",
@@ -184,7 +187,8 @@
       },
       "minMeshes": 7,
       "minMaterials": 2
-    }
+    },
+    "comparisonImage": "images/lamp.png"
   },
   {
     "id": "rover",
@@ -209,7 +213,8 @@
       },
       "minMeshes": 8,
       "minMaterials": 3
-    }
+    },
+    "comparisonImage": "images/rover.png"
   },
   {
     "id": "room",
@@ -234,7 +239,8 @@
       },
       "minMeshes": 10,
       "minMaterials": 4
-    }
+    },
+    "comparisonImage": "images/room.png"
   },
   {
     "id": "beat-cut",
