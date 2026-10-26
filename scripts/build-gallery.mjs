@@ -7,9 +7,16 @@ const lanes=[['claude','Claude Code'],['codex','Codex'],['hermes','Hermes'],['ds
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sections=[];
 for(const c of cases){
-  if(!c.images)continue;
+  if(!c.images&&!c.videos)continue;
   const figures=[];
   for(const [id,name]of lanes){
+    if(c.videos){
+      const video=c.videos[id],poster=c.images?.[id];
+      if(typeof video!=='string'||!/^media\/[a-z0-9-]+\.mp4$/.test(video)||typeof poster!=='string'||!/^images\/[a-z0-9-]+\.jpg$/.test(poster))throw Error('Invalid gallery video');
+      await access(join(root,'site',video));await access(join(root,'site',poster));
+      figures.push(`<figure><figcaption>${name}</figcaption><video controls playsinline preload="none" poster="${poster}" aria-label="${escape(c.title)} — ${name}"><source src="${video}" type="video/mp4"></video></figure>`);
+      continue;
+    }
     const path=c.images[id];
     if(typeof path!=='string'||!/^images\/[a-z0-9-]+\.jpg$/.test(path))throw Error('Invalid gallery image');
     await access(join(root,'site',path));

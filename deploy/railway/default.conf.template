@@ -1,0 +1,13 @@
+server {
+    listen ${PORT};
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+    server_tokens off;
+    add_header X-Content-Type-Options nosniff always;
+    location = /healthz { access_log off; return 200 'ok'; }
+    location = /index.html { add_header Cache-Control 'no-cache'; }
+    location ~* \.(jpg|png|css)$ { expires 1h; try_files $uri =404; }
+    location ~* \.mp4$ { expires 1h; try_files $uri =404; }
+    location / { try_files $uri $uri/ =404; }
+}
