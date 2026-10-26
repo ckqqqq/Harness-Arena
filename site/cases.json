@@ -285,6 +285,25 @@
       "fps": 24,
       "videoCodec": "h264",
       "audioRequired": true
+    },
+    "videos": {
+      "claude": "media/beat-cut-claude.mp4",
+      "codex": "media/beat-cut-codex.mp4",
+      "hermes": "media/beat-cut-hermes.mp4"
+    },
+    "images": {
+      "claude": "images/beat-cut-claude.jpg",
+      "codex": "images/beat-cut-codex.jpg",
+      "hermes": "images/beat-cut-hermes.jpg"
+    },
+    "failures": {
+      "dsh": "本轮未产出视频"
+    },
+    "nativeStatus": {
+      "claude": "budget_exhausted",
+      "codex": "completed",
+      "hermes": "timeout",
+      "dsh": "budget_exhausted"
     }
   },
   {
@@ -300,6 +319,24 @@
       "fps": 24,
       "videoCodec": "h264",
       "audioRequired": true
+    },
+    "videos": {
+      "claude": "media/vertical-reframe-claude.mp4",
+      "codex": "media/vertical-reframe-codex.mp4"
+    },
+    "images": {
+      "claude": "images/vertical-reframe-claude.jpg",
+      "codex": "images/vertical-reframe-codex.jpg"
+    },
+    "failures": {
+      "hermes": "本轮未产出视频",
+      "dsh": "本轮未产出视频"
+    },
+    "nativeStatus": {
+      "claude": "budget_exhausted",
+      "codex": "completed",
+      "hermes": "budget_exhausted",
+      "dsh": "budget_exhausted"
     }
   },
   {

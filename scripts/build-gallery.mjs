@@ -11,10 +11,15 @@ for(const c of cases){
   const figures=[];
   for(const [id,name]of lanes){
     if(c.videos){
+      const state={completed:'',budget_exhausted:' · 额度耗尽',timeout:' · 超时'}[c.nativeStatus?.[id]]||'';
+      if(!c.videos[id]&&c.failures?.[id]){
+        figures.push(`<figure><figcaption>${name}${state}</figcaption><div class="unavailable">${escape(c.failures[id])}</div></figure>`);
+        continue;
+      }
       const video=c.videos[id],poster=c.images?.[id];
       if(typeof video!=='string'||!/^media\/[a-z0-9-]+\.mp4$/.test(video)||typeof poster!=='string'||!/^images\/[a-z0-9-]+\.jpg$/.test(poster))throw Error('Invalid gallery video');
       await access(join(root,'site',video));await access(join(root,'site',poster));
-      figures.push(`<figure><figcaption>${name}</figcaption><video controls playsinline preload="none" poster="${poster}" aria-label="${escape(c.title)} — ${name}"><source src="${video}" type="video/mp4"></video></figure>`);
+      figures.push(`<figure><figcaption>${name}${state}</figcaption><video controls playsinline preload="none" poster="${poster}" aria-label="${escape(c.title)} — ${name}"><source src="${video}" type="video/mp4"></video></figure>`);
       continue;
     }
     const path=c.images[id];

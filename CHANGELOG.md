@@ -4,6 +4,8 @@ Entries distinguish local/deployment milestones from public GitHub publication. 
 
 ## Unreleased
 
+- Publish five actual native-run video artifacts across beat-cut and vertical-reframing cases, with compressed delivery copies, click-to-load playback and retained failure states.
+
 - Replace the gallery with a static image wall, standalone compressed thumbnails, no client JavaScript and no empty video placeholders.
 
 - Present ten case sections as an inline four-harness comparison wall, including 24 actual 3D captures and explicitly pending video lanes.

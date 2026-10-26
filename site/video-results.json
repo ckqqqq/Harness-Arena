@@ -1,0 +1,99 @@
+[
+  {
+    "id": "beat-cut",
+    "lanes": {
+      "claude": {
+        "status": "budget_exhausted",
+        "snapshot": true,
+        "observed": {
+          "duration": "12.000000",
+          "video": [
+            {
+              "codec_name": "h264",
+              "width": 1280,
+              "height": 720,
+              "avg_frame_rate": "24/1"
+            }
+          ]
+        }
+      },
+      "codex": {
+        "status": "completed",
+        "snapshot": true,
+        "observed": {
+          "duration": "12.000000",
+          "video": [
+            {
+              "codec_name": "h264",
+              "width": 1280,
+              "height": 720,
+              "avg_frame_rate": "24/1"
+            }
+          ]
+        }
+      },
+      "hermes": {
+        "status": "timeout",
+        "snapshot": true,
+        "observed": {
+          "duration": "12.000000",
+          "video": [
+            {
+              "codec_name": "h264",
+              "width": 1280,
+              "height": 720,
+              "avg_frame_rate": "24/1"
+            }
+          ]
+        }
+      },
+      "dsh": {
+        "status": "budget_exhausted",
+        "snapshot": false
+      }
+    }
+  },
+  {
+    "id": "vertical-reframe",
+    "lanes": {
+      "claude": {
+        "status": "budget_exhausted",
+        "snapshot": true,
+        "observed": {
+          "duration": "8.000000",
+          "video": [
+            {
+              "codec_name": "h264",
+              "width": 720,
+              "height": 1280,
+              "avg_frame_rate": "24/1"
+            }
+          ]
+        }
+      },
+      "codex": {
+        "status": "completed",
+        "snapshot": true,
+        "observed": {
+          "duration": "8.000000",
+          "video": [
+            {
+              "codec_name": "h264",
+              "width": 720,
+              "height": 1280,
+              "avg_frame_rate": "24/1"
+            }
+          ]
+        }
+      },
+      "hermes": {
+        "status": "budget_exhausted",
+        "snapshot": false
+      },
+      "dsh": {
+        "status": "budget_exhausted",
+        "snapshot": false
+      }
+    }
+  }
+]
